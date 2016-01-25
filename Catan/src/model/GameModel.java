@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import map.Map;
 import player.Player;
+import shared.ResourceCard;
 import shared.definitions.CatanColor;
 import shared.definitions.ResourceType;
 import shared.locations.EdgeLocation;
@@ -77,7 +78,18 @@ public class GameModel {
 	 * @return
 	 */
 	public boolean canMaritimeTrade(int playerId, int playerId2) {
-		return false;
+		if(players.get(playerId) == null || players.get(playerId2) == null) {
+			System.out.println("Error! The player doesn't exist!");
+		}
+		
+		ArrayList<ResourceCard> one = players.get(playerId).getPlayerHand().getResourceCards();
+		ArrayList<ResourceCard> two = players.get(playerId2).getPlayerHand().getResourceCards();
+
+		if(one.size() == 0 || two.size() == 0) {
+			return false;
+		}
+		
+		return true;
 	}
 	
 	/**
@@ -86,6 +98,40 @@ public class GameModel {
 	 * @return
 	 */
 	public boolean canDomesticTrade(int playerId) {
+		ArrayList<ResourceCard> resources = players.get(playerId).getPlayerHand().getResourceCards();
+		int wood = 0;
+		int brick = 0;
+		int wool = 0;
+		int wheat = 0;
+		int ore = 0;
+		
+		for(ResourceCard rc : resources) {
+			switch(rc.getType()) {
+				case WOOD: wood++; break;
+				case BRICK: brick++; break;
+				case SHEEP: wool++; break;
+				case WHEAT: wheat++; break;
+				case ORE: ore++; break;
+				default: System.out.println("Error! The resource type doesn't exist!");
+			}
+		}
+		
+		if(wood >= 4) {
+			return true;
+		}
+		if(brick >= 4) {
+			return true;
+		}
+		if(wool >= 4) {
+			return true;
+		}
+		if(wheat >= 4) {
+			return true;
+		}
+		if(ore >= 4) {
+			return true;
+		}
+		
 		return false;
 	}
 	
@@ -110,7 +156,7 @@ public class GameModel {
 	 * Incriments the turn
 	 */
 	private void updateTurn() {
-		version ++;
+		version++;
 	}
 
 	/**
