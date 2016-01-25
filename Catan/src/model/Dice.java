@@ -17,4 +17,5 @@ public class Dice {
 	public static int rollDice(){
 		return 0;
 	};
+	// Testing this random line of code from intelij
 }
