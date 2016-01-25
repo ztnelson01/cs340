@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import map.Map;
 import player.Player;
+import shared.definitions.CatanColor;
 import shared.definitions.ResourceType;
 import shared.locations.EdgeLocation;
 import shared.locations.HexLocation;
@@ -16,12 +17,17 @@ public class GameModel {
 	private Bank bank;
 	private ArrayList<Player> players;
 	
-// Eclipse sync test my laptop
 // Construtor
 	/**
 	 * The only constructor in this class
 	 */
 	public GameModel() {
+		
+		players.add(new Player(0, CatanColor.RED , "Player1"));
+		players.add(new Player(1, CatanColor.GREEN, "Player2"));
+		players.add(new Player(2, CatanColor.ORANGE, "Player3"));
+		players.add(new Player(3, CatanColor.BLUE, "Player4"));
+
 		
 	}
 	
@@ -41,7 +47,7 @@ public class GameModel {
 	 * @return
 	 */
 	public boolean canBuildSettlement(int playerId, VertexLocation loc, boolean setup){
-		return false;
+		return players.get(playerId).canBuildSettlement(loc, setup);
 	}
 	
 	/**
@@ -51,7 +57,7 @@ public class GameModel {
 	 * @return
 	 */
 	public boolean canBuildCity(int playerId, VertexLocation loc) {
-		return false;
+		return players.get(playerId).canBuildCity(loc);
 	}
 	
 	/**
@@ -61,7 +67,7 @@ public class GameModel {
 	 * @return
 	 */
 	public boolean canBuildRoad(int playerId, EdgeLocation loc) {
-		return false;
+		return players.get(playerId).canBuildRoad(loc);
 	}
 	
 	/**
