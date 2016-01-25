@@ -105,6 +105,7 @@ public class GameModel {
 		int wheat = 0;
 		int ore = 0;
 		
+		
 		for(ResourceCard rc : resources) {
 			switch(rc.getType()) {
 				case WOOD: wood++; break;
