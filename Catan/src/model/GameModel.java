@@ -16,7 +16,7 @@ public class GameModel {
 	private Bank bank;
 	private ArrayList<Player> players;
 	
-// Eclipse sync test	
+// Eclipse sync test	sdfd
 // Construtor
 	/**
 	 * The only constructor in this class
