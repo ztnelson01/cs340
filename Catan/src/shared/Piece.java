@@ -19,17 +19,20 @@ public class Piece
 	 * vertice the piece is built on
 	 */
 	private Vertex vertice;
+
+	private int playerID;
 	/**
 	 * set type, and build location of piece
 	 * @param type
 	 * @param edge
 	 * @param vertice
 	 */
-	public Piece(PieceType type, Edge edge, Vertex vertice)
+	public Piece(PieceType type, Edge edge, Vertex vertice, int playerID)
 	{
 		this.type = type;
 		this.edge = edge;
 		this.vertice = vertice;
+		this.playerID = playerID;
 	}
 	
 	/**
