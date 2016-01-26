@@ -28,7 +28,11 @@ public class GameModel {
 	 * The only constructor in this class
 	 */
 	public GameModel() {
+		// Set up the map and bank
+		map = new Map();
+		bank = Bank.BANK;
 		
+		// Set up the players
 		players.add(new Player(0, CatanColor.RED , "Player1"));
 		players.add(new Player(1, CatanColor.GREEN, "Player2"));
 		players.add(new Player(2, CatanColor.ORANGE, "Player3"));
@@ -243,7 +247,7 @@ public class GameModel {
 	 */
 	public void robPlayer(int playerID, int victimID, HexLocation newRobberLocation) {
 		// Error checking
-		if(players.get(playerID) == null || players.get(victimID) == null) {
+		if(players.get(playerID) == null) {
 			System.out.println("Error! Player doesn't exist!");
 		}
 		
@@ -278,7 +282,44 @@ public class GameModel {
 	 * @param playerID ID of player buying card
 	 */
 	public void buyDevCard(int playerID) {
+		// Error checking
+		if(players.get(playerID) == null) {
+			System.out.println("Error! The player doesn't exist!");
+		}
 		
+		// More error checking - does the player have enough resources to buy a development card?
+		ArrayList<ResourceCard> tempHand = players.get(playerID).getPlayerHand().getResourceCards();
+		int numWool = 0;
+		int numWheat = 0;
+		int numOre = 0;
+		for(ResourceCard rc : tempHand) {
+			if(rc.getType() == ResourceType.SHEEP) {
+				numWool++;
+			}
+			if(rc.getType() == ResourceType.WHEAT) {
+				numWheat++;
+			}
+			if(rc.getType() == ResourceType.ORE) {
+				numOre++;
+			}
+		}
+		if(numWool == 0) {
+			System.out.println("Error! There is not enough sheep to build a road!");
+		}
+		if(numWheat == 0) {
+			System.out.println("Error! There is not enough wheat to build a road!");
+		}
+		if(numOre == 0) {
+			System.out.println("Error! There is not enough ore to build a road!");
+		}
+		
+		// Remove the resources from the player's hand
+		players.get(playerID).getPlayerHand().removeResources(1, ResourceType.SHEEP);
+		players.get(playerID).getPlayerHand().removeResources(1, ResourceType.WHEAT);
+		players.get(playerID).getPlayerHand().removeResources(1, ResourceType.ORE);
+
+		// Gives the player a new development card
+		// Not done yet
 	}
 	
 	/**
@@ -288,7 +329,15 @@ public class GameModel {
 	 * @param resource2 Second resource to receive
 	 */
 	public void yearOfPlenty(int playerID, ResourceType resource1, ResourceType resource2) {
+		// Error checking
+		if(players.get(playerID) == null) {
+			System.out.println("Error! The player doesn't exist!");
+		}
 		
+		// Add the cards to the player's hand
+		players.get(playerID).getPlayerHand().addResources(1, resource1);
+		players.get(playerID).getPlayerHand().addResources(1, resource2);
+
 	}
 	
 	/**
@@ -298,6 +347,40 @@ public class GameModel {
 	 * @param roadLocation2 Second location to build road
 	 */
 	public void roadBuilding(int playerID, EdgeLocation roadLocation1, EdgeLocation roadLocation2) {
+	/*	// Error Checking
+		if(players.get(playerID) == null) {
+			System.out.println("Error! The player doesn't exist!");
+		}
+		if(roadLocation1 == null) {
+			System.out.println("Error! roadLocation1 doesn't exist!");
+		}
+		if(roadLocation2 == null) {
+			System.out.println("Error! roadLocation2 doesn't exist!");
+		}
+		ArrayList<ResourceCard> tempHand = players.get(playerID).getPlayerHand().getResourceCards();
+		int numWood = 0;
+		int numBrick = 0;
+		for(ResourceCard rc : tempHand) {
+			if(rc.getType() == ResourceType.WOOD) {
+				numWood++;
+			}
+			if(rc.getType() == ResourceType.BRICK) {
+				numBrick++;
+			}
+		}
+		if(numWood == 0) {
+			System.out.println("Error! There is not enough lumber to build a road!");
+		}
+		if(numBrick == 0) {
+			System.out.println("Error! There is not enough brick to build a road!");
+		}
+		
+		// Check if it's possible to build a road at the given location
+		if(canBuildRoad(playerID, roadLocation1)) {
+			
+		} else {
+			System.out.println("Error! Canont build a road at the given location");
+		}*/
 		
 	}
 	
@@ -308,6 +391,16 @@ public class GameModel {
 	 * @param newRobberLocation New location of robber piece
 	 */
 	public void knight(int playerID, int victimID, HexLocation newRobberLocation) {
+		// Error checking is done in the robPlayer method
+		robPlayer(playerID, victimID, newRobberLocation);
+		
+		// More error checking
+		if(newRobberLocation == null) {
+			System.out.println("Error! The new robber location doesn't exist!");
+		}
+		
+		// Update the robber's position
+		map.setRobberLocation(newRobberLocation);
 		
 	}
 	
