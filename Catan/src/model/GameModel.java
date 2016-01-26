@@ -274,7 +274,7 @@ public class GameModel {
 	 * @param playerID ID of player finished their turn
 	 */
 	public void finishTurn(int playerID) {
-		
+		// I don't really know what to do here
 	}
 	
 	/**
