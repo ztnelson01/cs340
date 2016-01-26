@@ -56,7 +56,7 @@ public class GameModel {
 	 * @return
 	 */
 	public boolean canBuildSettlement(int playerId, VertexLocation loc, boolean setup){
-		return players.get(playerId).canBuildSettlement(loc, setup);
+		return players.get(playerId).canBuildSettlement(); && players.canBuildSettlement(playerId, loc, setup);
 	}
 	
 	/**
@@ -66,7 +66,7 @@ public class GameModel {
 	 * @return
 	 */
 	public boolean canBuildCity(int playerId, VertexLocation loc) {
-		return players.get(playerId).canBuildCity(loc);
+		return players.get(playerId).canBuildCity() && map.canBuildCity(playerId, loc);
 	}
 	
 	/**
@@ -76,7 +76,7 @@ public class GameModel {
 	 * @return
 	 */
 	public boolean canBuildRoad(int playerId, EdgeLocation loc) {
-		return players.get(playerId).canBuildRoad(loc);
+		return players.get(playerId).canBuildRoad() && map.canBuildRoad(playerId, loc);
 	}
 	
 	/**
@@ -458,13 +458,16 @@ public class GameModel {
 	 */
 	public void buildRoad(int playerID, EdgeLocation roadLocation, boolean setUp) {
 		// Error checking
-		boolean canBuild = players.get(playerID).canBuildRoad(roadLocation, setUp);
+		boolean canBuild = canBuildRoad(playerID, roadLocation);
 		if(!canBuild) {
 			System.out.println("Error! The player cannot build a road at this spot!");
 		}
 		
 		// Build the road
-		// Tell map or player to build the road?
+		map.buildRoad(playerID, roadLocation);
+		players.get(playerID).getPlayerHand().removeResources(1, ResourceType.BRICK);
+		players.get(playerID).getPlayerHand().removeResources(1, ResourceType.WOOD);
+
 	}
 	
 	/**
@@ -474,7 +477,19 @@ public class GameModel {
 	 * @param setUp True if settlement is being built during initial set up
 	 */
 	public void buildSettlment(int playerID, VertexLocation vertexLocation, boolean setUp) {
+		// Error checking
+		boolean canBuild = canBuildSettlement(playerID, vertexLocation, setUp);
+		if(!canBuild) {
+			System.out.println("Error! The player cannot build a settlement at this spot!");
+		}
 		
+		// Build the road
+		map.buildSettlement(playerID, vertexLocation, setUp);
+		players.get(playerID).getPlayerHand().removeResources(1, ResourceType.BRICK);
+		players.get(playerID).getPlayerHand().removeResources(1, ResourceType.WOOD);
+		players.get(playerID).getPlayerHand().removeResources(1, ResourceType.WHEAT);
+		players.get(playerID).getPlayerHand().removeResources(1, ResourceType.SHEEP);
+
 	}
 	
 	/**
@@ -483,7 +498,17 @@ public class GameModel {
 	 * @param vertexLocation Location to build city
 	 */
 	public void buildCity(int playerID, VertexLocation vertexLocation) {
+		// Error checking
+		boolean canBuild = canBuildCity(playerID, vertexLocation);
+		if(!canBuild) {
+			System.out.println("Error! The player cannot build a city at this spot!");
+		}
 		
+		// Build the road
+		map.buildCity(playerID, vertexLocation);
+		players.get(playerID).getPlayerHand().removeResources(2, ResourceType.WHEAT);
+		players.get(playerID).getPlayerHand().removeResources(3, ResourceType.ORE);
+
 	}
 	
 	/**
