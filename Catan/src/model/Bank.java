@@ -77,10 +77,11 @@ public class Bank
 		ArrayList<ResourceCard> theNewOne = new ArrayList<ResourceCard>();
 		int count = 0;
 		for(ResourceCard rc : bankResourceCards) {
-			if(rc.getType() != type || count >= amount) {
+			if (rc.getType() != type || count >= amount) {
 				theNewOne.add(new ResourceCard(rc.getType()));
 			} else {
 				count++;
+			}
 		}
 	}
 	/**
