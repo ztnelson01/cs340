@@ -26,8 +26,7 @@ public class Bank
 	/**
 	 * Populate deck of development cards and maximum number of resource cards
 	 */
-	public void generateStartingResources()
-	{
+	public void generateStartingResources() {
 		
 	}
 	/**
@@ -35,8 +34,7 @@ public class Bank
 	 * @param amount
 	 * @param type
 	 */
-	public void addResources(int amount, ResourceType type)
-	{
+	public void addResources(int amount, ResourceType type) {
 		
 	}
 	/**
@@ -44,8 +42,7 @@ public class Bank
 	 * @param amount
 	 * @param type
 	 */
-	public void removeResources(int amount, ResourceType type)
-	{
+	public void removeResources(int amount, ResourceType type) {
 		
 	}
 	/**
@@ -54,24 +51,21 @@ public class Bank
 	 * @return
 	 */
 	
-	public int numResourceRemaining(ResourceType type)
-	{
+	public int numResourceRemaining(ResourceType type) {
 		return 0;
 	}
 	/**
 	 * returns development cards
 	 * @return
 	 */
-	public ArrayList<DevelopmentCard> getDevelopmentCards()
-	{
+	public ArrayList<DevelopmentCard> getDevelopmentCards() {
 		return bankDevelopmentCards;
 	}
 	/**
 	 * returns resource cards
 	 * @return
 	 */
-	public ArrayList<ResourceCard> getResourceCards()
-	{
+	public ArrayList<ResourceCard> getResourceCards() {
 		return bankResourceCards;
 	}
 }
