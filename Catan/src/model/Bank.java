@@ -81,7 +81,6 @@ public class Bank
 				theNewOne.add(new ResourceCard(rc.getType()));
 			} else {
 				count++;
-			}
 		}
 	}
 	/**
