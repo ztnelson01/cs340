@@ -556,7 +556,7 @@ public class GameModel {
 
 		// Accept the trade
 		if(accept) {
-
+			// Do the trading stuff here
 		}
 	}
 	
