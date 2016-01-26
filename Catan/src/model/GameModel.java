@@ -5,8 +5,10 @@ import java.util.Scanner;
 
 import map.Map;
 import player.Player;
+import shared.DevelopmentCard;
 import shared.ResourceCard;
 import shared.definitions.CatanColor;
+import shared.definitions.DevCardType;
 import shared.definitions.ResourceType;
 import shared.locations.EdgeLocation;
 import shared.locations.HexLocation;
@@ -302,6 +304,35 @@ public class GameModel {
 	 * @param resource Resource to monopolize
 	 */
 	public void monopoly(int playerID, ResourceType resource) {
+		// Error checking
+		ArrayList<DevelopmentCard> cards = players.get(playerID).getPlayerHand().getDevelopmentCards();
+		boolean exist = false;
+		for(DevelopmentCard temp : cards) {
+			if(temp.getType() == DevCardType.MONOPOLY) {
+				exist = true;
+			}
+		}
+		if(!exist) {
+			System.out.println("Error! The player doesn't have a monopoly card!");
+		}
+		
+		// Remove all the resources
+		int numOfResources = 0;
+		for(Player temp : players) {
+			ArrayList<ResourceCard> tempHand = temp.getPlayerHand().getResourceCards();
+			int playerAmount = 0;
+			for(ResourceCard rc : tempHand) {
+				if(rc.getType() == resource) {
+					playerAmount++;
+				}
+			}
+			temp.getPlayerHand().removeResources(playerAmount, resource);
+			
+			numOfResources += playerAmount;
+		}
+		
+		// Give all the resources to the player
+		players.get(playerID).getPlayerHand().addResources(numOfResources, resource);
 		
 	}
 	
@@ -320,7 +351,14 @@ public class GameModel {
 	 * @param setUp True if road is being built during initial set up
 	 */
 	public void buildRoad(int playerID, EdgeLocation roadLocation, boolean setUp) {
+		// Error checking
+		boolean canBuild = players.get(playerID).canBuildRoad(roadLocation, setUp);
+		if(!canBuild) {
+			System.out.println("Error! The player cannot build a road at this spot!");
+		}
 		
+		// Build the road
+		// Tell map or player to build the road?
 	}
 	
 	/**
