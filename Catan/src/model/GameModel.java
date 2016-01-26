@@ -22,8 +22,7 @@ public class GameModel {
 	private Bank bank;
 	private ArrayList<Player> players;
 	private Player currentTurn;
-	// Random comment
-	// Random comment 2
+
 // Construtor
 	/**
 	 * The only constructor in this class
@@ -550,6 +549,15 @@ public class GameModel {
 	 * @param accept True if player accepted trade
 	 */
 	public void acceptTrade(int playerID, boolean accept) {
+		// Error checking
+		if(players.get(playerID) == null) {
+			System.out.println("Error! playerID doesn't exist!");
+		}
+
+		// Accept the trade
+		if(accept) {
+
+		}
 	}
 	
 	/**
