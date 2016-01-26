@@ -8,6 +8,7 @@ import shared.definitions.CatanColor;
 /*
  * Hey zack i think that the parameters for canBuild____ functions need to change
  * i'm going to pass in the location and if it's a setup or not for canBuildSettlement
+ * there also needs to be a setvictorypoint getter
  * brian
  */
 
