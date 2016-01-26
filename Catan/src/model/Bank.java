@@ -1,5 +1,6 @@
 package model;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import shared.*;
 import shared.definitions.ResourceType;
@@ -73,7 +74,15 @@ public class Bank
 		}
 
 		// Remove the resources
-		// Add code here
+		ArrayList<ResourceCard> theNewOne = new ArrayList<ResourceCard>();
+		int count = 0;
+		for(ResourceCard rc : bankResourceCards) {
+			if(rc.getType() != type || count >= amount) {
+				theNewOne.add(new ResourceCard(rc.getType()));
+			} else {
+				count++;
+			}
+		}
 	}
 	/**
 	 * Remove returns number of resources of type remaining in the bank
