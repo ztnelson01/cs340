@@ -372,8 +372,34 @@ public class GameModel {
 	 * @param outputResource Resource player receives
 	 */
 	public void maritimeTrade(int playerID, int ratio, ResourceType inputResource, ResourceType outputResource) {
-		Scanner s = new Scanner(ratio + "");
-		s.useDelimiter(":");
+		// Error checking
+		if(players.get(playerID) == null) {
+			System.out.println("Error! Player doesn't exist!");
+		}
+		
+		// Setup
+		ArrayList<ResourceCard> hand = players.get(playerID).getPlayerHand().getResourceCards();
+		
+		
+		// More error checking
+		int numResources = 0;
+		for(ResourceCard temp : hand) {
+			if(temp.getType() == inputResource) {
+				numResources++;
+			}
+		}
+		
+		if(numResources < ratio) {
+			System.out.println("Error! Player doesn't have enough resources to trade! numResoures = " + numResources);
+		}
+		
+		// Make the change
+		players.get(playerID).getPlayerHand().removeResources(ratio, inputResource);
+		
+		
+		// Add the card that the bank gives to the player
+		players.get(playerID).getPlayerHand().addResources(1, outputResource);
+				
 	}
 	
 }
