@@ -347,9 +347,9 @@ public class GameModel {
 	 * @param roadLocation2 Second location to build road
 	 */
 	public void roadBuilding(int playerID, EdgeLocation roadLocation1, EdgeLocation roadLocation2) {
-	/*	// Error Checking
+		// Error checking
 		if(players.get(playerID) == null) {
-			System.out.println("Error! The player doesn't exist!");
+			System.out.println("Error! playerID doesn't exist!");
 		}
 		if(roadLocation1 == null) {
 			System.out.println("Error! roadLocation1 doesn't exist!");
@@ -357,30 +357,20 @@ public class GameModel {
 		if(roadLocation2 == null) {
 			System.out.println("Error! roadLocation2 doesn't exist!");
 		}
-		ArrayList<ResourceCard> tempHand = players.get(playerID).getPlayerHand().getResourceCards();
-		int numWood = 0;
-		int numBrick = 0;
-		for(ResourceCard rc : tempHand) {
-			if(rc.getType() == ResourceType.WOOD) {
-				numWood++;
-			}
-			if(rc.getType() == ResourceType.BRICK) {
-				numBrick++;
+		boolean exist = false;
+		for(DevelopmentCard temp : players.get(playerID).getPlayerHand().getDevelopmentCards() ) {
+			if(temp.getType() == DevCardType.ROAD_BUILD) {
+				exist = true;
+				break;
 			}
 		}
-		if(numWood == 0) {
-			System.out.println("Error! There is not enough lumber to build a road!");
-		}
-		if(numBrick == 0) {
-			System.out.println("Error! There is not enough brick to build a road!");
+		if(!exist) {
+			System.out.println("Error! The player doesn't have a road building card!");
 		}
 		
-		// Check if it's possible to build a road at the given location
-		if(canBuildRoad(playerID, roadLocation1)) {
-			
-		} else {
-			System.out.println("Error! Canont build a road at the given location");
-		}*/
+		// Build the roads
+		map.buildRoad(playerID, roadLocation1);
+		map.buildRoad(playerID, roadLocation2);
 		
 	}
 	
