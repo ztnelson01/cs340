@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 import map.Map;
@@ -241,6 +242,7 @@ public class GameModel {
 	 * @param newRobberLocation New location of the robber piece
 	 */
 	public void robPlayer(int playerID, int victimID, HexLocation newRobberLocation) {
+		// Error checking
 		if(players.get(playerID) == null || players.get(victimID) == null) {
 			System.out.println("Error! Player doesn't exist!");
 		}
@@ -249,7 +251,18 @@ public class GameModel {
 			System.out.println("Hex spot doesn't exist!");
 		}
 		
-		// not done yet
+		// Rob the player
+		if(players.get(victimID) != null) {
+			// Get a random card
+			Random randCard = new Random();
+			int handSize = players.get(victimID).getPlayerHand().getResourceCards().size();
+			int cardPos = randCard.nextInt(handSize);
+			ResourceType stolenType = players.get(victimID).getPlayerHand().getResourceCards().get(cardPos).getType();
+			
+			// Do the stealing
+			players.get(victimID).getPlayerHand().removeResources(1, stolenType);
+			players.get(playerID).getPlayerHand().addResources(1, stolenType);
+		}
 	}
 	
 	/**
