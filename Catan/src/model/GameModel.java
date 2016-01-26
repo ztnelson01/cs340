@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import map.Map;
 import player.Player;
@@ -17,6 +18,7 @@ public class GameModel {
 	private Map map;
 	private Bank bank;
 	private ArrayList<Player> players;
+	private Player currentTurn;
 	
 // Construtor
 	/**
@@ -27,9 +29,8 @@ public class GameModel {
 		players.add(new Player(0, CatanColor.RED , "Player1"));
 		players.add(new Player(1, CatanColor.GREEN, "Player2"));
 		players.add(new Player(2, CatanColor.ORANGE, "Player3"));
-		players.add(new Player(3, CatanColor.BLUE, "Player4"));
-
-		
+		players.add(new Player(3, CatanColor.BLUE, "Player4"));	
+		currentTurn = players.get(0);
 	}
 	
 // Public methods
@@ -38,7 +39,7 @@ public class GameModel {
 	 * Plays the game
 	 */
 	public void playGame() {
-		
+		startSetUp();
 	}
 	
 	/**
@@ -228,7 +229,7 @@ public class GameModel {
 	 * @
 	 */
 	public void rollNumber(int playerID, int numberRolled) {
-		
+		// I dont see the need of this method? Brian
 	}
 	
 	/**
@@ -238,7 +239,15 @@ public class GameModel {
 	 * @param newRobberLocation New location of the robber piece
 	 */
 	public void robPlayer(int playerID, int victimID, HexLocation newRobberLocation) {
+		if(players.get(playerID) == null || players.get(victimID) == null) {
+			System.out.println("Error! Player doesn't exist!");
+		}
 		
+		if(newRobberLocation == null) {
+			System.out.println("Hex spot doesn't exist!");
+		}
+		
+		// not done yet
 	}
 	
 	/**
@@ -301,7 +310,7 @@ public class GameModel {
 	 * @param playerID ID of player playing the card
 	 */
 	public void monument(int playerID) {
-		
+		players.get(playerID).setVictoryPoints(players.get(playerID).getVictoryPoints()+1);
 	}
 	
 	/**
@@ -363,7 +372,8 @@ public class GameModel {
 	 * @param outputResource Resource player receives
 	 */
 	public void maritimeTrade(int playerID, int ratio, ResourceType inputResource, ResourceType outputResource) {
-		
+		Scanner s = new Scanner(ratio + "");
+		s.useDelimiter(":");
 	}
 	
 }
