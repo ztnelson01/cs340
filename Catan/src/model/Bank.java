@@ -26,7 +26,21 @@ public class Bank
 	 * Populate deck of development cards and maximum number of resource cards
 	 */
 	public void generateStartingResources() {
-		
+		// Error checking
+		int size = bankResourceCards.size();
+		if(size != 0) {
+			System.out.println("Error! There are already resources in the bank!")
+		}
+
+		// Generate the starting resources
+		for(int i = 0; i < 15; i++) {
+			bankResourceCards.add(new ResourceCard(ResourceType.WOOD));
+			bankResourceCards.add(new ResourceCard(ResourceType.BRICK));
+			bankResourceCards.add(new ResourceCard(ResourceType.SHEEP));
+			bankResourceCards.add(new ResourceCard(ResourceType.WHEAT));
+			bankResourceCards.add(new ResourceCard(ResourceType.ORE));
+
+		}
 	}
 	/**
 	 * add amount of type resources to the bank
@@ -34,7 +48,15 @@ public class Bank
 	 * @param type
 	 */
 	public void addResources(int amount, ResourceType type) {
-		
+		// Error checking
+		if(amount < 0) {
+			System.out.println("Error! Invalid amount!");
+		}
+
+		// Add more resources to the bank
+		for(int i = 0; i < amount; i++) {
+			bankResourceCards.add(new ResourceCard(type));
+		}
 	}
 	/**
 	 * remove amount resources of type from the bank
@@ -42,7 +64,14 @@ public class Bank
 	 * @param type
 	 */
 	public void removeResources(int amount, ResourceType type) {
-		
+		// Error checking
+		int numLeft = numResourceRemaining(type);
+		if(numLeft < amount) {
+			System.out.println("Error! There are not enough resources to remove!");
+		}
+
+		// Remove the resources
+		// Add code here
 	}
 	/**
 	 * Remove returns number of resources of type remaining in the bank
@@ -51,7 +80,13 @@ public class Bank
 	 */
 	
 	public int numResourceRemaining(ResourceType type) {
-		return 0;
+		int num = 0;
+		for(ResourceCard rc : bankResourceCards) {
+			if(rc.getType() == type) {
+				num++;
+			}
+		}
+		return num;
 	}
 	/**
 	 * returns development cards
