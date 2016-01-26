@@ -2,8 +2,18 @@ package map;
 
 import java.util.HashMap;
 import java.util.HashSet;
-
 import shared.locations.HexLocation;
+
+/*
+ * 
+ * I'm making the game model now and I think that the map class should have a method updateRobberPosition/setRobberPosition
+ * This way I can update it easily from the Game model class
+ * The robber should be kept in the hexes themselves but it i think it should be update from the gamemodel to
+ * the map then to the hexes. let me know what you guys think
+ * 
+ * Brian
+ *
+ */
 
 public class Map {
 
