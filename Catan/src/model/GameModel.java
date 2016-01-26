@@ -22,7 +22,7 @@ public class GameModel {
 	private Bank bank;
 	private ArrayList<Player> players;
 	private Player currentTurn;
-	
+	// Random comment
 // Construtor
 	/**
 	 * The only constructor in this class
