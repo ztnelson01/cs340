@@ -19,8 +19,7 @@ public class Bank
 	 */
 	private ArrayList<ResourceCard> bankResourceCards;
 	
-	private Bank()
-	{
+	private Bank() {
 		generateStartingResources();
 	}
 	/**
