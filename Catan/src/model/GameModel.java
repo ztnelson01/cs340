@@ -521,7 +521,35 @@ public class GameModel {
 	public void offerTrade(int playerID, ArrayList<ResourceType> resourceGive,
 			ArrayList<ResourceType> resourceReceive, 
 			int receiverID) {
+		// Error checking
+		if(players.get(playerID) == null) {
+			System.out.println("Error! playerID doesn't exist!");
+		}
+		if(players.get(receiverID) == null) {
+			System.out.println("Error! receiverID doesn't exist!");
+		}
+		if(resourceGive == null) {
+			System.out.println("Error! resourceGive doesn't exist!");
+		}
+		if(resourceReceive == null) {
+			System.out.println("Error! resourceRecieve doesn't exist!");
+		}
 		
+		// Remove the resources from the players
+		for(ResourceType rt : resourceGive) {
+			players.get(playerID).getPlayerHand().removeResources(1, rt);
+		}
+		for(ResourceType rt : resourceReceive) {
+			players.get(receiverID).getPlayerHand().removeResources(1, rt);
+		}
+		
+		// Give the players their new resources
+		for(ResourceType rt : resourceGive) {
+			players.get(receiverID).getPlayerHand().addResources(1, rt);
+		}
+		for(ResourceType rt : resourceReceive) {
+			players.get(playerID).getPlayerHand().addResources(1, rt);
+		}
 	}
 	
 	/**
