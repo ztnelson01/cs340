@@ -438,6 +438,7 @@ public class GameModel {
 	 */
 	public void monument(int playerID) {
 		players.get(playerID).setVictoryPoints(players.get(playerID).getVictoryPoints()+1);
+		players.get(playerID).setArmySize(players.get(playerID).getArmySize()+1);
 	}
 	
 	/**
