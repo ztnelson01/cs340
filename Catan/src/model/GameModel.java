@@ -23,6 +23,7 @@ public class GameModel {
 	private ArrayList<Player> players;
 	private Player currentTurn;
 	// Random comment
+	// Random comment 2
 // Construtor
 	/**
 	 * The only constructor in this class
