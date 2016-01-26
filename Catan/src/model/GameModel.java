@@ -530,7 +530,6 @@ public class GameModel {
 	 * @param accept True if player accepted trade
 	 */
 	public void acceptTrade(int playerID, boolean accept) {
-		
 	}
 	
 	/**
