@@ -27,9 +27,9 @@ public class GameModel {
 	/**
 	 * The only constructor in this class
 	 */
-	public GameModel() {
+	public GameModel(Map map) {
 		// Set up the map and bank
-		map = new Map();
+		this.map = map;
 		bank = Bank.BANK;
 		
 		// Set up the players
@@ -39,6 +39,8 @@ public class GameModel {
 		players.add(new Player(3, CatanColor.BLUE, "Player4"));	
 		currentTurn = players.get(0);
 	}
+
+
 	
 // Public methods
 	
