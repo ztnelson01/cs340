@@ -390,7 +390,7 @@ public class GameModel {
 		}
 		
 		// Update the robber's position
-		map.setRobberLocation(newRobberLocation);
+		map.setRobberLocation(newRobberLocation); // Don't know if we're going to update this in the map or not
 		
 	}
 	
