@@ -13,6 +13,7 @@ import shared.locations.HexLocation;
  * 
  * Brian
  *
+ *
  */
 
 public class Map {
