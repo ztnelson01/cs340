@@ -20,6 +20,8 @@ public class Bank
 	private ArrayList<ResourceCard> bankResourceCards;
 	
 	private Bank() {
+		bankResourceCards = new ArrayList<ResourceCard>();
+		bankDevelopmentCards = new ArrayList<DevelopmentCard>();
 		generateStartingResources();
 	}
 	/**
