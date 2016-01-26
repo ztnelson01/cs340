@@ -591,10 +591,12 @@ public class GameModel {
 		
 		// Make the change
 		players.get(playerID).getPlayerHand().removeResources(ratio, inputResource);
+		bank.addResources(ratio, inputResource);
 		
 		
 		// Add the card that the bank gives to the player
 		players.get(playerID).getPlayerHand().addResources(1, outputResource);
+		bank.removeResources(1, outputResource);
 				
 	}
 	
