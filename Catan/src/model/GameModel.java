@@ -153,11 +153,42 @@ public class GameModel {
 		return false;
 	}
 
+	/**
+	 * Returns a boolean whether or not the player can buy a development card
+	 * @return
+     */
 	public boolean buyDevCard() {
-		return false;
+		if(bank.getDevelopmentCards().size() == 0) {
+			return false;
+		}
+
+		ArrayList<ResourceCard> tempHand = players.get(playerIndex).getPlayerHand().getResourceCards();
+		int sheep = 0;
+		int wheat = 0;
+		int ore = 0;
+
+		for(ResourceCard rc : tempHand) {
+			switch(rc.getType()) {
+				case SHEEP: sheep++; break;
+				case WHEAT: wheat++; break;
+				case ORE: ore++; break;
+			}
+		}
+
+		if(sheep == 0|| wheat == 0 || ore == 0) {
+			return false;
+		}
+
+		return true;
 	}
 
-	public boolean soldier() {
+	/**
+	 * Returns a boolean whether or not a robber can be placed at the new hex location
+	 * @param loc
+	 * @param index
+     * @return
+     */
+	public boolean soldier(HexLocation loc, int index) {
 		return false;
 	}
 
@@ -165,17 +196,25 @@ public class GameModel {
 		return false;
 	}
 
-
-	public boolean roadBuilding() {
-
-	}
-
-	public boolean monopoly() {
+	public boolean roadBuilding(EdgeLocation spot1, EdgeLocation spot2) {
 		return false;
 	}
 
-	public boolean monument(int playerID) {
-		ArrayList<DevelopmentCard> cards = players.get(playerID).getPlayerHand().getDevelopmentCards();
+	/**
+	 * Returns a boolean whether or not the monopoly is valid
+	 * @param type
+	 * @return
+     */
+	public boolean monopoly(ResourceType type) {
+		return true;
+	}
+
+	/**
+	 * Returns a boolean whether or not the victory points can be played or not
+	 * @return
+     */
+	public boolean monument() {
+		ArrayList<DevelopmentCard> cards = players.get(playerIndex).getPlayerHand().getDevelopmentCards();
 		int count = 0;
 
 		for(DevelopmentCard dc : cards) {
@@ -185,7 +224,7 @@ public class GameModel {
 		}
 		int difference = 10 - count;
 
-		if(difference >= players.get(playerID).getVictoryPoints()) {
+		if(difference >= players.get(playerIndex).getVictoryPoints()) {
 			return true;
 		} else {
 			return false;
