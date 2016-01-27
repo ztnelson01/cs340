@@ -2,17 +2,15 @@ package map;
 
 import java.util.HashSet;
 
+import shared.definitions.PortType;
+
 
 
 public class Port {
 
 	private PortType type;
 	
-	public enum PortType
-	{
-		
-		WOOD, BRICK, SHEEP, WHEAT, ORE, THREE
-	}
+	
 	
 	
 	

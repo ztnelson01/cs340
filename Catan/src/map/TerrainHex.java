@@ -3,6 +3,7 @@ package map;
 import java.util.HashMap;
 
 import shared.Piece;
+import shared.definitions.HexType;
 import shared.locations.EdgeLocation;
 import shared.locations.HexLocation;
 import shared.locations.VertexLocation;
@@ -16,14 +17,11 @@ public class TerrainHex {
 	
 	private HexType type;
 	private Piece piece;
+	private int number;
 	
 	
 
-	public enum HexType
-	{
-		
-		WOOD, BRICK, SHEEP, WHEAT, ORE, DESERT, WATER
-	}
+
 
 
 
@@ -36,8 +34,10 @@ public class TerrainHex {
 	 * @param x, x coordinate for the hex position
 	 * @param y, y coordinate for the hex position
 	 */
-	public TerrainHex(int x, int y){
-		
+	public TerrainHex(HexType wheat, int num){
+		this.type = wheat;
+		number = num;
+		piece = null;
 	}
 
 

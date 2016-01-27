@@ -15,7 +15,7 @@ public class Edge {
 	 * @param location, the EdgeLocation for this Edge
 	 
 	 */
-	private Edge(EdgeLocation location){
+	public Edge(EdgeLocation location){
 		
 	}
 	
