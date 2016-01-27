@@ -224,14 +224,14 @@ public class GameModel {
 		int brickG = 0;
 		int woolG = 0;
 		int wheatG = 0;
-		int oreG = 0;
+		int oreG = 0;;
 		for(ResourceCard rc : giving) {
 			switch(rc.getType()) {
 				case WOOD: woodG++; break;
 				case BRICK: brickG++; break;
 				case SHEEP: woolG++; break;
 				case WHEAT: wheatG++; break;
-				case ORE: oreG++ break;
+				case ORE: oreG++; break;
 				default: System.out.println("Error! The resource type doesn't exist!");
 			}
 		}
