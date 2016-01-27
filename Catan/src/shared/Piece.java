@@ -5,6 +5,8 @@ import map.Edge;
 import map.Vertex;
 import shared.definitions.PieceType;
 
+
+//Add player ID
 public class Piece 
 {
 	/**
