@@ -393,6 +393,7 @@ public class GameModel {
 		
 		// Update the robber's position
 		map.setRobberLocation(newRobberLocation); // Don't know if we're going to update this in the map or not
+		// Or maybe do something like robber.setLocation(newRobberLocation);
 		
 	}
 	
@@ -559,6 +560,7 @@ public class GameModel {
 		// Accept the trade
 		if(accept) {
 			// Do the trading stuff here
+			// I'm not super sure what to do here
 		}
 	}
 	
