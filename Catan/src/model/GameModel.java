@@ -218,7 +218,7 @@ public class GameModel {
 				case BRICK: brickH++; break;
 				case SHEEP: woolH++; break;
 				case WHEAT: wheatH++; break;
-				case ORE: oreH++ break;
+				case ORE: oreH++; break;
 				default: System.out.println("Error! The resource type doesn't exist!");
 			}
 		}
