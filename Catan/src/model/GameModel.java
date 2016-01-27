@@ -39,15 +39,20 @@ public class GameModel {
 // Public methods
 
 	/**
-	 *
+	 *	Returns true if the chat was successful
 	 * @return
      */
 	public boolean sendChat(String message) {
 		return true;
 	}
 
+	/**
+	 * Returns a boolean whether or not the players accepted the trade
+	 * @param accept
+	 * @return
+     */
 	public boolean acceptTrade(boolean accept) {
-		return false;
+		return accept;
 	}
 
 	/**
@@ -281,8 +286,12 @@ public class GameModel {
 		return true;
 	}
 
+	/**
+	 * Returns a boolean indicating if the turn finished or not
+	 * @return
+     */
 	public boolean finishTurn() {
-		return false;
+		return true;
 	}
 
 	/**
@@ -345,15 +354,27 @@ public class GameModel {
 			}
 		}
 
-		if(one == 0 || two == 0) {
-			return false;
+		if(type1 != type2) {
+			if (one == 0 || two == 0) {
+				return false;
+			}
+		} else {
+			if (one == 0 || one == 1) {
+				return false;
+			}
 		}
 
 		return true;
 	}
 
+	/**
+	 * Returns a boolean returning whether or not a road buliding card can be used at the two given locations
+	 * @param spot1
+	 * @param spot2
+     * @return
+     */
 	public boolean roadBuilding(EdgeLocation spot1, EdgeLocation spot2) {
-		return false;
+		return map.roadBuilding(spot1, spot2);
 	}
 
 	/**
