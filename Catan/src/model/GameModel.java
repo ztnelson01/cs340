@@ -20,9 +20,10 @@ public class GameModel {
 	private Bank bank;
 	private ArrayList<Player> players;
 	private int playerIndex;
+	private HexLocation robberLoc;
 
 // Constructor
-	public GameModel(Map map, int playerIndex) {
+	public GameModel(Map map, int playerIndex, HexLocation robberLoc) {
 		this.map = map;
 		this.bank = Bank.BANK;
 		this.playerIndex = playerIndex;
@@ -43,17 +44,76 @@ public class GameModel {
 		return true;
 	}
 
-	public boolean acceptTrade() {
+	public boolean acceptTrade(boolean accept) {
 		return false;
 	}
 
-	public boolean discardCards() {
-		return false;
+	/**
+	 * Returns a boolean indicating whether or not you can discard the given cards
+	 * @param toDiscard
+	 * @return
+     */
+	public boolean discardCards(ArrayList<ResourceCard> toDiscard) {
+		ArrayList<ResourceCard> currentHand = players.get(playerIndex).getPlayerHand().getResourceCards();
+
+		if(currentHand.size() <= 7) {
+			return false;
+		}
+
+		int woodH = 0;
+		int brickH = 0;
+		int woolH = 0;
+		int wheatH = 0;
+		int oreH = 0;
+
+		int woodD = 0;
+		int brickD = 0;
+		int woolD = 0;
+		int wheatD = 0;
+		int oreD = 0;
+
+		for(ResourceCard rc : currentHand) {
+			switch(rc.getType()) {
+				case WOOD: woodH++; break;
+				case BRICK: brickH++; break;
+				case SHEEP: woolH++; break;
+				case WHEAT: wheatH++; break;
+				case ORE: oreH++ break;
+				default: System.out.println("Error! The resource type doesn't exist!");
+			}
+		}
+
+		for(ResourceCard rc : toDiscard) {
+			switch(rc.getType()) {
+				case WOOD: woodD++; break;
+				case BRICK: brickD++; break;
+				case SHEEP: woolD++; break;
+				case WHEAT: wheatD++; break;
+				case ORE: oreD++; break;
+				default: System.out.println("Error! The resource type doesn't exist!");
+			}
+		}
+
+		if(woodH < woodD || brickH < brickD ||
+				woolH < woolD || wheatH < wheatD ||
+				oreH < oreD) {
+			return false;
+		}
+
+		return true;
 	}
 
+	/**
+	 * Returns a boolean whether or not the roll was valid
+	 * @param number
+	 * @return
+     */
 	public boolean rollNumber(int number) {
-
-		return false;
+		if(2 <= number && number <= 12) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -192,8 +252,32 @@ public class GameModel {
 		return false;
 	}
 
-	public boolean yearOfPlenty() {
-		return false;
+	/**
+	 * Returns a boolean whether or not a player can play the road building card
+	 * @param type1
+	 * @param type2
+     * @return
+     */
+	public boolean yearOfPlenty(ResourceType type1, ResourceType type2) {
+		ArrayList<ResourceCard> temp = bank.getResourceCards();
+
+		int one = 0;
+		int two = 0;
+
+		for(ResourceCard rc : temp) {
+			if(rc.getType() == type1) {
+				one++;
+			}
+			if(rc.getType() == type2) {
+				two++;
+			}
+		}
+
+		if(one == 0 || two == 0) {
+			return false;
+		}
+
+		return true;
 	}
 
 	public boolean roadBuilding(EdgeLocation spot1, EdgeLocation spot2) {
