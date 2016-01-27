@@ -202,7 +202,7 @@ public class GameModel {
 	}
 
 	public boolean maritimeTrade(int ratio, ArrayList<ResourceCard> giving, ArrayList<ResourceCard> getting) {
-		// Determine if hte player has enough resources or not
+		// Determine if the player has enough resources or not
 		if(giving.size() != ratio) {
 			return false;
 		}
@@ -386,6 +386,7 @@ public class GameModel {
 	 * @return
      */
 	public boolean monopoly(ResourceType type) {
+
 		return true;
 	}
 
