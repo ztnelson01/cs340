@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 import map.Map;
+import map.Port;
 import player.Player;
 import shared.DevelopmentCard;
 import shared.ResourceCard;
@@ -193,6 +194,10 @@ public class GameModel {
 
 	public boolean maritimeTrade(int ratio, ArrayList<ResourceCard> giving, ArrayList<ResourceCard> getting) {
 		// Determine if hte player has enough resources or not
+		if(giving.size() != ratio) {
+			return false;
+		}
+
 		int woodH = 0;
 		int brickH = 0;
 		int woolH = 0;
@@ -233,20 +238,46 @@ public class GameModel {
 
 		// Check if the right number of resources is correct based on the ports the user has
 		switch(ratio) {
-			case 2: break;
-			case 3: break;
-			case 4: break;
+			case 2:
+				if(players.get(playerIndex).hasPortType(giving.get(0))) {
+					return true;
+				} else {
+					return false;
+				}
+			case 3:
+				if(players.get(playerIndex).hasPortType(giving.get(0))) {
+					return true;
+				} else {
+					return false;
+				}
+			case 4: return true;
 			default: return false;
 		}
 
 		// Make the trade
 		// Don't know if this code goes here or not
 
-		return true;
 	}
 
-	public boolean robPlayer() {
-		return false;
+	/**
+	 * Returns a boolean indicating whether robbing a player with givin location and victimID is valid
+	 * @param loc
+	 * @param victimID
+     * @return
+     */
+	public boolean robPlayer(HexLocation loc, int victimID) {
+		if(robberLoc.equals(loc)) {
+			return false;
+		}
+		if(victimID != -1) {
+			if(players.get(victimID).getPlayerHand().getResourceCards().size() == 0) {
+				return false;
+			}
+		} else {
+			return false;
+		}
+
+		return true;
 	}
 
 	public boolean finishTurn() {
@@ -285,11 +316,11 @@ public class GameModel {
 	/**
 	 * Returns a boolean whether or not a robber can be placed at the new hex location
 	 * @param loc
-	 * @param index
+	 * @param victimID
      * @return
      */
-	public boolean soldier(HexLocation loc, int index) {
-		return false;
+	public boolean soldier(HexLocation loc, int victimID) {
+		return robPlayer(loc,victimID);
 	}
 
 	/**
