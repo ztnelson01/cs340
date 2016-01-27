@@ -22,6 +22,7 @@ public class GameModel {
 	private ArrayList<Player> players;
 	private int playerIndex;
 	private HexLocation robberLoc;
+	private String type;
 
 // Constructor
 	public GameModel(Map map, int playerIndex, HexLocation robberLoc) {
