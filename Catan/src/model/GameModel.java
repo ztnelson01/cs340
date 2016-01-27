@@ -231,10 +231,18 @@ public class GameModel {
 			return false;
 		}
 
-		// Check if the right number of resourcs is correct based on the ports the user has
+		// Check if the right number of resources is correct based on the ports the user has
+		switch(ratio) {
+			case 2: break;
+			case 3: break;
+			case 4: break;
+			default: return false;
+		}
 
+		// Make the trade
+		// Don't know if this code goes here or not
 
-		return false;
+		return true;
 	}
 
 	public boolean robPlayer() {
