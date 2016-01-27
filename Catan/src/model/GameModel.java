@@ -72,16 +72,6 @@ public class GameModel {
 		int wheatD = 0;
 		int oreD = 0;
 
-		for(ResourceCard rc : currentHand) {
-			switch(rc.getType()) {
-				case WOOD: woodH++; break;
-				case BRICK: brickH++; break;
-				case SHEEP: woolH++; break;
-				case WHEAT: wheatH++; break;
-				case ORE: oreH++ break;
-				default: System.out.println("Error! The resource type doesn't exist!");
-			}
-		}
 
 		for(ResourceCard rc : toDiscard) {
 			switch(rc.getType()) {
@@ -201,7 +191,49 @@ public class GameModel {
 		return false;
 	}
 
-	public boolean maritimeTrade() {
+	public boolean maritimeTrade(int ratio, ArrayList<ResourceCard> giving, ArrayList<ResourceCard> getting) {
+		// Determine if hte player has enough resources or not
+		int woodH = 0;
+		int brickH = 0;
+		int woolH = 0;
+		int wheatH = 0;
+		int oreH = 0;
+		for(ResourceCard rc : players.get(playerIndex).getPlayerHand().getResourceCards()) {
+			switch(rc.getType()) {
+				case WOOD: woodH++; break;
+				case BRICK: brickH++; break;
+				case SHEEP: woolH++; break;
+				case WHEAT: wheatH++; break;
+				case ORE: oreH++ break;
+				default: System.out.println("Error! The resource type doesn't exist!");
+			}
+		}
+
+		int woodG = 0;
+		int brickG = 0;
+		int woolG = 0;
+		int wheatG = 0;
+		int oreG = 0;
+		for(ResourceCard rc : giving) {
+			switch(rc.getType()) {
+				case WOOD: woodG++; break;
+				case BRICK: brickG++; break;
+				case SHEEP: woolG++; break;
+				case WHEAT: wheatG++; break;
+				case ORE: oreG++ break;
+				default: System.out.println("Error! The resource type doesn't exist!");
+			}
+		}
+
+		if(woodH < woodG || brickH < brickG ||
+				woolH < woolG || wheatH < wheatG ||
+				oreH < oreG) {
+			return false;
+		}
+
+		// Check if the right number of resourcs is correct based on the ports the user has
+
+
 		return false;
 	}
 
