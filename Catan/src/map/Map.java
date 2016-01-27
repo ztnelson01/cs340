@@ -63,7 +63,7 @@ public class Map {
 	
 	/**
 	 * 
-	 * Creates and assembles TerrainHex objects to be stored in a HashMap to be used throughout the game
+	 * Creates and assembles TerrainHex objects to be stored in a HashMap to be used throughout the game!
 	 * 
 	 **/
 	public void buildHexes(){
