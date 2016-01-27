@@ -26,9 +26,12 @@ public class GameModel {
 
 // Constructor
 	public GameModel(Map map, int playerIndex, HexLocation robberLoc) {
+		players = new ArrayList<Player>();
+
 		this.map = map;
 		this.bank = Bank.BANK;
 		this.playerIndex = playerIndex;
+		this.robberLoc = robberLoc;
 
 		players.add(new Player(0, CatanColor.RED , "Player1"));
 		players.add(new Player(1, CatanColor.GREEN, "Player2"));
