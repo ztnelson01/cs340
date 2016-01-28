@@ -23,7 +23,7 @@ public class GameModel {
 	private int playerIndex;
 	private HexLocation robberLoc;
 	private String type;
-
+//This a test
 // Constructor
 	public GameModel(Map map, int playerIndex, HexLocation robberLoc) {
 		players = new ArrayList<Player>();
