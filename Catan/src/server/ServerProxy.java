@@ -1,5 +1,9 @@
 package server;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import translators.user.*;
@@ -19,18 +23,43 @@ import shared.locations.VertexLocation;
  */
 public class ServerProxy implements ServerInterface {
 
+	private static String SERVER_HOST;
+	private static int SERVER_PORT;
+	private static String URL_PREFIX = "http://" + SERVER_HOST + ":" + SERVER_PORT;
+	
+	public ServerProxy(String host, int port){
+		SERVER_HOST = host;
+		SERVER_PORT = port;
+		URL_PREFIX = "http://" + SERVER_HOST + ":" + SERVER_PORT;
+	}
+	
 	@Override
 	public void userLogin(String username, String password) {
 		UserTranslator user = new UserTranslator(username, password);
 		String json = user.translate();
 
 	}
+	
+	private Object post(String urlPath, String json) throws ServerException{
+		try{
+			URL url = new URL(URL_PREFIX + urlPath);
+			HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+			connection.setRequestMethod("POST");
+			connection.setDoOutput(true);
+			connection.setDoInput(true);
+			connection.connect();
+			//send object receive response
+		}catch(Exception e){
+			throw new ServerException(String.format("doPost failed: %s", e.getMessage()), e);
+		}
+		return null;
+	}
 
 	@Override
 	public void userRegister(String username, String password) {
 		UserTranslator user = new UserTranslator(username, password);
 		String json = user.translate();
-
+		
 	}
 
 	@Override
