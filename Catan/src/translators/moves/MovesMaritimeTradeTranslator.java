@@ -1,5 +1,6 @@
 package translators.moves;
 
+import shared.definitions.ResourceType;
 import translators.GenericTranslator;
 
 public class MovesMaritimeTradeTranslator extends GenericTranslator {
@@ -10,14 +11,25 @@ public class MovesMaritimeTradeTranslator extends GenericTranslator {
 	private String inputResource;
 	private String outputResource;
 	
-	public MovesMaritimeTradeTranslator(int playerIndex, int ratio, String inputResource,
-			String outputResource) {
+	public MovesMaritimeTradeTranslator(int playerIndex, int ratio, ResourceType inputResource,
+			ResourceType outputResource) {
 		super();
 		this.type = "maritimeTrade";
 		this.playerIndex = playerIndex;
 		this.ratio = ratio;
-		this.inputResource = inputResource;
-		this.outputResource = outputResource;
+		this.inputResource = resourceTranslate(inputResource);
+		this.outputResource = resourceTranslate(outputResource);
+	}
+	
+	private String resourceTranslate(ResourceType type){
+		switch(type){
+			case WOOD: return "Wood";
+			case BRICK: return "Brick";
+			case ORE: return "Ore";
+			case WHEAT: return "Wheat";
+			case SHEEP: return "Sheep";
+		}
+		return "";
 	}
 	
 	public String getType() {

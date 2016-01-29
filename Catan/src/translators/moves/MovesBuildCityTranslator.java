@@ -1,5 +1,7 @@
 package translators.moves;
 
+import shared.locations.HexLocation;
+import shared.locations.VertexDirection;
 import translators.GenericTranslator;
 
 public class MovesBuildCityTranslator extends GenericTranslator {
@@ -8,11 +10,11 @@ public class MovesBuildCityTranslator extends GenericTranslator {
 	private int playerIndex;
 	private VertexLocation vertexLocation;
 	
-	public MovesBuildCityTranslator(int playerIndex, VertexLocation vertexLocation) {
+	public MovesBuildCityTranslator(int playerIndex, HexLocation location, VertexDirection direction) {
 		super();
 		this.type = "buildCity";
 		this.playerIndex = playerIndex;
-		this.vertexLocation = vertexLocation;
+		this.vertexLocation = new VertexLocation(location, direction);
 	}
 
 	public String getType() {

@@ -1,5 +1,8 @@
 package translators.moves;
 
+import java.util.ArrayList;
+
+import shared.definitions.ResourceType;
 import translators.GenericTranslator;
 
 public class MovesDiscardCardsTranslator extends GenericTranslator {
@@ -8,11 +11,30 @@ public class MovesDiscardCardsTranslator extends GenericTranslator {
 	private int playerIndex;
 	private ResourceList discardedCards;
 	
-	public MovesDiscardCardsTranslator(int playerIndex, ResourceList discardedCards) {
+	public MovesDiscardCardsTranslator(int playerIndex, ArrayList<ResourceType> discardedCards) {
 		super();
 		this.type = "discardCards";
 		this.playerIndex = playerIndex;
-		this.discardedCards = discardedCards;
+		this.discardedCards = resourceTranslate(discardedCards);
+	}
+	
+	private ResourceList resourceTranslate(ArrayList<ResourceType> resources){
+		int wood = 0;
+		int brick = 0;
+		int ore = 0;
+		int wheat = 0;
+		int sheep = 0;
+		
+		for(int i = 0; i < resources.size(); i++){
+			switch(resources.get(i)){
+				case WOOD: wood++; break;
+				case BRICK: brick++; break;
+				case ORE: ore++; break;
+				case WHEAT: wheat++; break;
+				case SHEEP: sheep++; break;
+			}
+		}
+		return new ResourceList(brick, ore, sheep, wheat, wood);
 	}
 
 	public String getType() {

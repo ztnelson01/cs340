@@ -1,5 +1,7 @@
 package translators.moves;
 
+import shared.locations.HexLocation;
+import shared.locations.VertexDirection;
 import translators.GenericTranslator;
 
 public class MovesBuildSettlementTranslator extends GenericTranslator {
@@ -9,11 +11,11 @@ public class MovesBuildSettlementTranslator extends GenericTranslator {
 	private VertexLocation vertexLocation;
 	private boolean free;
 	
-	public MovesBuildSettlementTranslator(int playerIndex, VertexLocation vertexLocation, boolean free) {
+	public MovesBuildSettlementTranslator(int playerIndex, HexLocation location, VertexDirection direction, boolean free) {
 		super();
 		this.type = "buildSettlement";
 		this.playerIndex = playerIndex;
-		this.vertexLocation = vertexLocation;
+		this.vertexLocation = new VertexLocation(location, direction);
 		this.free = free;
 	}
 	

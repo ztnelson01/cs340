@@ -1,4 +1,8 @@
 package translators.moves;
+
+import shared.locations.HexLocation;
+import shared.locations.VertexDirection;
+
 /*****This vertex location is for the translator, not to use on the map*****/
 public class VertexLocation {
 
@@ -6,13 +10,25 @@ public class VertexLocation {
 	private int y;
 	private String direction;
 	
-	public VertexLocation(int x, int y, String direction) {
+	public VertexLocation(HexLocation location, VertexDirection direction) {
 		super();
-		this.x = x;
-		this.y = y;
-		this.direction = direction;
+		this.x = location.getX();
+		this.y = location.getY();
+		this.direction = directionTranslate(direction);
 	}
-
+	
+	private String directionTranslate(VertexDirection direction){
+		switch(direction){
+			case NorthWest: return "NW";
+			case NorthEast: return "NE";
+			case West: return "W";
+			case East: return "E";
+			case SouthWest: return "SW";
+			case SouthEast: return "SE";
+		}
+		return "";
+	}
+	
 	public int getX() {
 		return x;
 	}

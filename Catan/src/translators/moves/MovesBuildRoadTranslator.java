@@ -1,5 +1,7 @@
 package translators.moves;
 
+import shared.locations.EdgeDirection;
+import shared.locations.HexLocation;
 import translators.GenericTranslator;
 
 public class MovesBuildRoadTranslator extends GenericTranslator {
@@ -9,13 +11,14 @@ public class MovesBuildRoadTranslator extends GenericTranslator {
 	private EdgeLocation roadLocation;
 	private boolean free;
 	
-	public MovesBuildRoadTranslator(int playerIndex, EdgeLocation roadLocation, boolean free) {
+	public MovesBuildRoadTranslator(int playerIndex, HexLocation location, EdgeDirection direction, boolean free) {
 		super();
 		this.type = "buildRoad";
 		this.playerIndex = playerIndex;
-		this.roadLocation = roadLocation;
+		this.roadLocation = new EdgeLocation(location, direction);
 		this.free = free;
 	}
+	
 	public String getType() {
 		return type;
 	}
@@ -40,7 +43,4 @@ public class MovesBuildRoadTranslator extends GenericTranslator {
 	public void setFree(boolean free) {
 		this.free = free;
 	}
-	
-	
-
 }

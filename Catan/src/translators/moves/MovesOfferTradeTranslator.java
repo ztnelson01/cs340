@@ -1,5 +1,8 @@
 package translators.moves;
 
+import java.util.ArrayList;
+
+import shared.definitions.ResourceType;
 import translators.GenericTranslator;
 /***** Order for ResourceList constructor: brick, ore, sheep, wheat, wood*****/
 public class MovesOfferTradeTranslator extends GenericTranslator {
@@ -9,12 +12,41 @@ public class MovesOfferTradeTranslator extends GenericTranslator {
 	private ResourceList offer;
 	private int receiver;
 	
-	public MovesOfferTradeTranslator(int playerIndex, ResourceList offer, int receiver) {
+	public MovesOfferTradeTranslator(int playerIndex, ArrayList<ResourceType> resourceGive, ArrayList<ResourceType> resourceReceive, int receiver) {
 		super();
 		this.type = "offerTrade";
 		this.playerIndex = playerIndex;
-		this.offer = offer;
+		this.offer = resourceTranslate(resourceGive, resourceReceive);
 		this.receiver = receiver;
+	}
+	
+	private ResourceList resourceTranslate(ArrayList<ResourceType> resourceGive, ArrayList<ResourceType> resourceReceive){
+		int wood = 0;
+		int brick = 0;
+		int ore = 0;
+		int wheat = 0;
+		int sheep = 0;
+		
+		for(int i = 0; i < resourceGive.size(); i++){
+			switch(resourceGive.get(i)){
+				case WOOD: wood--; break;
+				case BRICK: brick--; break;
+				case ORE: ore--; break;
+				case WHEAT: wheat--; break;
+				case SHEEP: sheep--; break;
+			}
+		}
+		
+		for(int i = 0; i < resourceReceive.size(); i++){
+			switch(resourceReceive.get(i)){
+				case WOOD: wood++; break;
+				case BRICK: brick++; break;
+				case ORE: ore++; break;
+				case WHEAT: wheat++; break;
+				case SHEEP: sheep++; break;
+			}
+		}
+		return new ResourceList(brick, ore, sheep, wheat, wood);
 	}
 
 	public String getType() {

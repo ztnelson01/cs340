@@ -2,6 +2,10 @@ package server;
 
 import java.util.ArrayList;
 
+import translators.user.*;
+import translators.games.*;
+import translators.game.*;
+import translators.moves.*;
 import model.GameModel;
 import shared.definitions.ResourceType;
 import shared.locations.EdgeLocation;
@@ -17,31 +21,35 @@ public class ServerProxy implements ServerInterface {
 
 	@Override
 	public void userLogin(String username, String password) {
-		// TODO Auto-generated method stub
+		UserTranslator user = new UserTranslator(username, password);
+		String json = user.translate();
 
 	}
 
 	@Override
 	public void userRegister(String username, String password) {
-		// TODO Auto-generated method stub
+		UserTranslator user = new UserTranslator(username, password);
+		String json = user.translate();
 
 	}
 
 	@Override
 	public void listGames() {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public void createGame(String name, boolean randomTiles, boolean randomNumbers, boolean randomPorts) {
-		// TODO Auto-generated method stub
+		GamesCreateTranslator create = new GamesCreateTranslator(randomTiles, randomNumbers, randomPorts, name);
+		String json = create.translate();
 
 	}
 
 	@Override
 	public void joinGame(int playerID, String color) {
-		// TODO Auto-generated method stub
+		GamesJoinTranslator join = new GamesJoinTranslator(playerID, color);
+		String json = join.translate();
 
 	}
 
@@ -54,7 +62,8 @@ public class ServerProxy implements ServerInterface {
 
 	@Override
 	public void addAI(String AIname) {
-		// TODO Auto-generated method stub
+		GameAddAITranslator ai = new GameAddAITranslator(AIname);
+		String json = ai.translate();
 
 	}
 
@@ -66,104 +75,122 @@ public class ServerProxy implements ServerInterface {
 
 	@Override
 	public void sendChat(int playerID, String content) {
-		// TODO Auto-generated method stub
+		MovesSendChatTranslator chat = new MovesSendChatTranslator(playerID, content);
+		String json = chat.translate();
 
 	}
 
 	@Override
 	public void rollNumber(int playerID, int numberRolled) {
-		// TODO Auto-generated method stub
+		MovesRollNumberTranslator roll = new MovesRollNumberTranslator(playerID, numberRolled);
+		String json = roll.translate();
 
 	}
 
 	@Override
 	public void robPlayer(int playerID, int victimID, HexLocation newRobberLocation) {
-		// TODO Auto-generated method stub
+		MovesRobPlayerTranslator rob = new MovesRobPlayerTranslator(playerID, victimID, newRobberLocation);
+		String json = rob.translate();
 
 	}
 
 	@Override
 	public void finishTurn(int playerID) {
-		// TODO Auto-generated method stub
+		MovesFinishTurnTranslator finish = new MovesFinishTurnTranslator(playerID);
+		String json = finish.translate();
 
 	}
 
 	@Override
 	public void buyDevCard(int playerID) {
-		// TODO Auto-generated method stub
+		MovesBuyDevCardTranslator dev = new MovesBuyDevCardTranslator(playerID);
+		String json = dev.translate();
 
 	}
 
 	@Override
 	public void yearOfPlenty(int playerID, ResourceType resource1, ResourceType resource2) {
-		// TODO Auto-generated method stub
+		MovesYearOfPlentyTranslator year = new MovesYearOfPlentyTranslator(playerID, resource1, resource2);
+		String json = year.translate();
 
 	}
 
 	@Override
 	public void roadBuilding(int playerID, EdgeLocation roadLocation1, EdgeLocation roadLocation2) {
-		// TODO Auto-generated method stub
+		MovesRoadBuildingTranslator roadBuilding = new MovesRoadBuildingTranslator(playerID, roadLocation1.getHexLoc(), roadLocation1.getDir(),
+				roadLocation2.getHexLoc(), roadLocation2.getDir());
+		String json = roadBuilding.translate();
 
 	}
 
 	@Override
 	public void knight(int playerID, int victimID, HexLocation newRobberLocation) {
-		// TODO Auto-generated method stub
+		MovesSoldierTranslator soldier = new MovesSoldierTranslator(playerID, victimID, newRobberLocation);
+		String json = soldier.translate();
 
 	}
 
 	@Override
 	public void monopoly(int playerID, ResourceType resource) {
-		// TODO Auto-generated method stub
-
+		MovesMonopolyTranslator monopoly = new MovesMonopolyTranslator(playerID, resource);
+		String json = monopoly.translate();
 	}
 
 	@Override
 	public void monument(int playerID) {
-		// TODO Auto-generated method stub
-
+		MovesMonumentTranslator monument = new MovesMonumentTranslator(playerID);
+		String json = monument.translate();
+		
 	}
 
 	@Override
 	public void buildRoad(int playerID, EdgeLocation roadLocation, boolean setUp) {
-		// TODO Auto-generated method stub
+		MovesBuildRoadTranslator road = new MovesBuildRoadTranslator(playerID, roadLocation.getHexLoc(), roadLocation.getDir(), setUp);
+		String json = road.translate();
 
 	}
 
 	@Override
 	public void buildSettlment(int playerID, VertexLocation vertexLocation, boolean setUp) {
-		// TODO Auto-generated method stub
-
+		MovesBuildSettlementTranslator settlement = new MovesBuildSettlementTranslator(playerID, vertexLocation.getHexLoc(), 
+				vertexLocation.getDir(), setUp);
+		String json = settlement.translate();
+		
 	}
 
 	@Override
 	public void buildCity(int playerID, VertexLocation vertexLocation) {
-		// TODO Auto-generated method stub
+		MovesBuildCityTranslator city = new MovesBuildCityTranslator(playerID, vertexLocation.getHexLoc(), vertexLocation.getDir());
+		String json = city.translate();
 
 	}
 
 	@Override
 	public void acceptTrade(int playerID, boolean accept) {
-		// TODO Auto-generated method stub
+		MovesAcceptTradeTranslator acceptTrade = new MovesAcceptTradeTranslator(playerID, accept);
+		String json = acceptTrade.translate();
 
 	}
 
 	@Override
 	public void maritimeTrade(int playerID, int ratio, ResourceType inputResource, ResourceType outputResource) {
-		// TODO Auto-generated method stub
+		MovesMaritimeTradeTranslator maritime = new MovesMaritimeTradeTranslator(playerID, ratio, inputResource, outputResource);
+		String json = maritime.translate();
 
 	}
 
 	@Override
 	public void discardCards(int playerID, ArrayList<ResourceType> resources) {
-		// TODO Auto-generated method stub
+		MovesDiscardCardsTranslator discard = new MovesDiscardCardsTranslator(playerID, resources);
+		String json = discard.translate();
 
 	}
 
 	@Override
 	public void offerTrade(int playerID, ArrayList<ResourceType> resourceGive, ArrayList<ResourceType> resourceReceive,
 			int receiverID) {
-		// TODO Auto-generated method stub
+		MovesOfferTradeTranslator offer = new MovesOfferTradeTranslator(playerID, resourceGive, resourceReceive, receiverID);
+		String json = offer.translate();
 		
 	}
 
