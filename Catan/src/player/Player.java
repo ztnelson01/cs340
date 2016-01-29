@@ -6,6 +6,7 @@ import shared.Piece;
 import shared.definitions.CatanColor;
 import shared.definitions.ResourceType;
 
+//new comnet
 /*
  * Hey zack i think that the parameters for canBuild____ functions need to change
  * i'm going to pass in the location and if it's a setup or not for canBuildSettlement
