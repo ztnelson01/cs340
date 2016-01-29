@@ -135,7 +135,7 @@ public class GameModel {
 		}
 
 		if(free) {
-			if (!players.get(playerIndex).canBuildRoad(loc)) {
+			if (!players.get(playerIndex).canBuildRoad()) {
 				return false;
 			}
 		}
@@ -163,7 +163,7 @@ public class GameModel {
 		}
 
 		if(free) {
-			if (!players.get(playerIndex).canBuildSettlement(loc)) {
+			if (!players.get(playerIndex).canBuildSettlement()) {
 				return false;
 			}
 		}
@@ -179,7 +179,7 @@ public class GameModel {
      */
 	public boolean buildCity(boolean free, VertexLocation loc) {
 		boolean canBuild;
-		if(map.canBuildCity(free, loc)) {
+		if(map.canBuildCity(loc)) {
 			canBuild = true;
 		} else {
 			canBuild = false;
@@ -190,7 +190,7 @@ public class GameModel {
 		}
 
 		if(free) {
-			if (!players.get(playerIndex).canBuildCity(loc)) {
+			if (!players.get(playerIndex).canBuildCity()) {
 				return false;
 			}
 		}

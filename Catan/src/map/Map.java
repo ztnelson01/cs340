@@ -41,14 +41,14 @@ public class Map {
 		/**
 		 * @return true if you can build a city here (settlement already here)j
 		 */
-		public boolean canBuildCity(int playerID, VertexLocation loc) {
+		public boolean canBuildCity(VertexLocation loc) {
 			return false;
 		}
 		
 		/**
 		 * @return true if you can build a settlement here (no adjacent buildings and a road connecting)
 		 */
-		public boolean canBuildSettlement(int playerID, VertexLocation loc) {
+		public boolean canBuildSettlement(boolean free, VertexLocation loc) {
 			return false;
 		}
 	
@@ -57,7 +57,7 @@ public class Map {
 		 * 
 		 * @return true if this is a valid location for a road (no road currently at this location)
 		 */
-		public boolean canBuildRoad(int playerID, EdgeLocation loc){
+		public boolean canBuildRoad(boolean free, EdgeLocation loc){
 			return false;
 		}
 	

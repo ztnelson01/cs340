@@ -32,7 +32,7 @@ public class Bank
 		// Error checking
 		int size = bankResourceCards.size();
 		if(size != 0) {
-			System.out.println("Error! There are already resources in the bank!")
+			System.out.println("Error! There are already resources in the bank!");
 		}
 
 		// Generate the starting resources
