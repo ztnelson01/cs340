@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import map.Port;
 import shared.Piece;
 import shared.definitions.CatanColor;
+import shared.definitions.ResourceType;
 
 /*
  * Hey zack i think that the parameters for canBuild____ functions need to change
@@ -83,7 +84,14 @@ public class Player
 	 */
 	public boolean canBuildSettlement()
 	{
-		return true;
+		if 		(playerHand.numResourceOfType(ResourceType.BRICK) > 0 
+				&& playerHand.numResourceOfType(ResourceType.WOOD) > 0
+				&& playerHand.numResourceOfType(ResourceType.WHEAT) > 0
+				&& playerHand.numResourceOfType(ResourceType.SHEEP) > 0)
+		{
+			return true;
+		}
+		return false;
 	}
 	/**
 	 * check resources required for building city
